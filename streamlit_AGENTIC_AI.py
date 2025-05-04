@@ -429,7 +429,7 @@ class LLMClient:
             return response.choices[0].message.content
         except Exception as e:
             print(f"Error querying ChatGPT: {e}")
-            return "Error in LLM processing."
+            return f"Error in LLM processing : querying ChatGPT: {e}"
 
 
 class Agent:
