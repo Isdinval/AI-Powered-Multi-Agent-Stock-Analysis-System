@@ -401,9 +401,13 @@ class LLMClient:
     
     def __init__(self, api_key=None):
         # Use OpenAI API from Streamlit secrets
-        self.api_key = api_key or st.secrets["OPENAI_API_KEY"]
-        self.client = OpenAI(api_key=self.api_key) if self.api_key else None
-        self.model_name = "gpt-3.5-turbo"  # or "gpt-3.5-turbo" for faster/cheaper option
+        try:
+            self.api_key = api_key or st.secrets["OPENAI_API_KEY"]
+            self.client = OpenAI(api_key=self.api_key) if self.api_key else None
+            self.model_name = "gpt-3.5-turbo"  # or "gpt-3.5-turbo" for faster/cheaper option
+        except Exception as e:
+            st.error("Failed to initialize OpenAI client. Please check your API key in secrets.")
+            raise e
     
     def query(self, prompt, max_tokens=1024):
         """Send a query to ChatGPT and get response"""
