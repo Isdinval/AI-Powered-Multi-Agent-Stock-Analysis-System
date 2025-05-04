@@ -26,7 +26,7 @@ from openai import OpenAI
 from plotly.subplots import make_subplots
 import streamlit as st
 
-api_key = st.secrets["OPENAI_API_KEY"]
+api_key = st.secrets.get("OPENAI_API_KEY")
 # ############################################
 # II. GATHER INFORMATIONS (TECHNICAL, FUNDAMENTAL, NEWS SENTIMETN ANALYSIS)
 # ############################################
@@ -1922,7 +1922,7 @@ def main():
     
         # Initialize coordinator if not already in session state
         if 'coordinator' not in st.session_state:
-            st.session_state.coordinator = CoordinatorAgent(st.session_state.get('api_key'))
+            st.session_state.coordinator = CoordinatorAgent(st.secrets["OPENAI_API_KEY"])
             
         # ############################################
         # SECTION 1 : ANALYSIS RESULTS
