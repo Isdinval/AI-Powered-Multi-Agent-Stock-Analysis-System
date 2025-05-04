@@ -1,0 +1,9 @@
+yfinance
+pandas
+pandas-ta
+vaderSentiment
+requests
+openai
+matplotlib
+plotly
+streamlit
