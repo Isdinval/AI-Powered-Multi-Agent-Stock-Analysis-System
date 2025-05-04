@@ -26,7 +26,7 @@ from openai import OpenAI
 from plotly.subplots import make_subplots
 import streamlit as st
 
-
+api_key = st.secrets["OPENAI_API_KEY"]
 # ############################################
 # II. GATHER INFORMATIONS (TECHNICAL, FUNDAMENTAL, NEWS SENTIMETN ANALYSIS)
 # ############################################
@@ -1800,7 +1800,7 @@ def main():
         
         news_count = st.slider("Number of News Articles", 10, 50, 100)
     
-        api_key = st.text_input("OpenAI API Key", type="password")
+        # api_key = st.text_input("OpenAI API Key", type="password")
         
         # Indicator customization expander
         with st.expander("Advanced Indicator Settings"):
