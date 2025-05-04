@@ -1918,7 +1918,7 @@ def main():
     
         # Initialize coordinator if not already in session state
         if 'coordinator' not in st.session_state:
-            st.session_state.coordinator = CoordinatorAgent(st.secrets["OPENAI_API_KEY"])
+            st.session_state.coordinator = CoordinatorAgent()
             
         # ############################################
         # SECTION 1 : ANALYSIS RESULTS
