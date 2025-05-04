@@ -26,7 +26,7 @@ from openai import OpenAI
 from plotly.subplots import make_subplots
 import streamlit as st
 
-api_key = st.secrets.get("OPENAI_API_KEY")
+
 # ############################################
 # II. GATHER INFORMATIONS (TECHNICAL, FUNDAMENTAL, NEWS SENTIMETN ANALYSIS)
 # ############################################
@@ -400,8 +400,8 @@ class LLMClient:
     """Client for interacting with OpenAI's ChatGPT models"""
     
     def __init__(self, api_key=None):
-        # Use OpenAI API
-        self.api_key = api_key or os.environ.get("OPENAI_API_KEY")
+        # Use OpenAI API from Streamlit secrets
+        self.api_key = api_key or st.secrets["OPENAI_API_KEY"]
         self.client = OpenAI(api_key=self.api_key) if self.api_key else None
         self.model_name = "gpt-3.5-turbo"  # or "gpt-3.5-turbo" for faster/cheaper option
     
@@ -724,9 +724,9 @@ class StrategyFormulatorAgent(Agent):
 class CoordinatorAgent:
     """Coordinates the entire analysis process"""
     
-    def __init__(self, api_key=None):
+    def __init__(self):
         # Initialize LLM client
-        self.llm_client = LLMClient(api_key)
+        self.llm_client = LLMClient()
         
         # Initialize specialist agents
         self.technical_analyst = TechnicalAnalystAgent(self.llm_client)
@@ -1842,10 +1842,6 @@ def main():
 
         # Main content area
         if st.button("Analyze", key="analyze_button", use_container_width=True):
-            if not api_key:
-                st.error("Please enter your OpenAI API Key to perform the analysis")
-                return
-        
             try:
                 # Initialize progress bar
                 progress_bar = st.progress(0)
@@ -1884,7 +1880,7 @@ def main():
                 progress_bar.progress(60)
         
                 status_text.text("Generating AI analysis...")
-                coordinator = CoordinatorAgent(api_key)
+                coordinator = CoordinatorAgent()
                 report = coordinator.generate_report(ticker, news_count)
                 progress_bar.progress(100)
                 status_text.empty()
