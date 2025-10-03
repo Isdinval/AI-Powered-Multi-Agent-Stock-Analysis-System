@@ -1,10 +1,9 @@
 yfinance
 pandas
+numpy
+pandas-ta
 numpy==1.26.0
-git+https://github.com/twopirllc/pandas-ta.git
+pandas-ta==0.3.14b0
 vaderSentiment
 requests
 openai
-matplotlib
-plotly
-streamlit
