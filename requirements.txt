@@ -5,3 +5,4 @@ pandas-ta==0.4.71b0
 vaderSentiment
 requests
 openai
+plotly
