@@ -1,7 +1,7 @@
 yfinance
 pandas
 numpy==1.26.0
-pandas-ta==0.3.8b0
+pandas-ta==0.4.71b0
 vaderSentiment
 requests
 openai
