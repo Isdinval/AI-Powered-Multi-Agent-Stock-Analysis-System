@@ -95,9 +95,9 @@ def fetch_technical_indicators(ticker: str, timeframe: str = "1d", indicator_par
     # Calculate Bollinger Bands dynamically based on period and standard deviation
     bb = ta.bbands(data['Close'], length=bb_length, std=bb_std)
     st.write("Colonnes générées par ta.bbands :", bb.columns.tolist())  # Débogage Streamlit
-    bb_upper_column = f"BBU_{bb_length}_{bb_std}"
-    bb_middle_column = f"BBM_{bb_length}_{bb_std}"
-    bb_lower_column = f"BBL_{bb_length}_{bb_std}"
+    bb_upper_column = f"BBU_{bb_length}_{bb_std:.1f}_{bb_std:.1f}"
+    bb_middle_column = f"BBM_{bb_length}_{bb_std:.1f}_{bb_std:.1f}"
+    bb_lower_column = f"BBL_{bb_length}_{bb_std:.1f}_{bb_std:.1f}"
     data['BB_Upper'] = bb[bb_upper_column]
     data['BB_Middle'] = bb[bb_middle_column]
     data['BB_Lower'] = bb[bb_lower_column]
@@ -1977,6 +1977,7 @@ def main():
 if __name__ == "__main__":
     main()
     
+
 
 
 
