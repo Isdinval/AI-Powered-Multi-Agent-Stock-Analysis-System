@@ -6,3 +6,4 @@ vaderSentiment
 requests
 openai
 plotly
+matplotlib
