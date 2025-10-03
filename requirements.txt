@@ -1,6 +1,6 @@
 yfinance
 pandas
-numpy==1.26.0
+numpy>=1.26.0
 pandas-ta==0.4.71b0
 vaderSentiment
 requests
